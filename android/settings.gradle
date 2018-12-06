@@ -1,0 +1,4 @@
+rootProject.name = 'AnimeDownload'
+include ':react-native-gesture-handler', ':rn-tools',':react-native-vector-icons',':react-native-splash-screen'
+
+include ':app'

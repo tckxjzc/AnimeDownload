@@ -1,0 +1,34 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "module": "esnext",
+    "target": "es2017",
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "sourceMap": false,
+    "jsx": "preserve",
+    "baseUrl": ".",
+    "rootDir": ".",
+    "skipDefaultLibCheck": true,
+    "skipLibCheck": true,
+    "typeRoots": [
+      "./types",
+      "./node_modules/@types"
+    ],
+//    "lib": [
+//      "es2017"
+//    ],
+    "paths": {
+      "*": [
+        "*",
+        "node_modules/*"
+      ]
+    }
+  }//,
+//  "include": [
+//    "src/**/*",
+//    "types/*",
+//    "node_modules/@types/**/*"
+//  ]
+
+}
