@@ -34,6 +34,8 @@ class ComicatManager {
                 else {
                     reject(new Error(response.statusText));
                 }
+            }).catch((e) => {
+                reject(e);
             });
         });
     }
@@ -50,6 +52,8 @@ class ComicatManager {
                 else {
                     reject(new Error(response.statusText));
                 }
+            }).catch((e) => {
+                reject(e);
             });
         });
     }
@@ -69,9 +73,10 @@ class ComicatManager {
                 else {
                     reject(new Error(response.statusText));
                 }
+            }).catch((e) => {
+                reject(e);
             });
         });
-        ;
     }
 }
 export default ComicatManager;

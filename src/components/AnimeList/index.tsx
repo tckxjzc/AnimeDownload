@@ -99,7 +99,7 @@ class AnimeList extends Component<Props, State> {
         this.mounted = false;
     }
 
-    flatList = React.createRef<FlatList<any>>()
+    flatList = React.createRef<FlatList<any>>();
     /**
      *properties
      */
@@ -125,7 +125,7 @@ class AnimeList extends Component<Props, State> {
                 }
             }
         }).catch(() => {
-            this.endLoading();
+            this.showError();
         });
     };
     load = () => {
@@ -137,7 +137,7 @@ class AnimeList extends Component<Props, State> {
                     this.endLoading();
                 }
             }).catch(() => {
-                this.endLoading();
+                this.showError();
             })
         }
     };
@@ -177,13 +177,16 @@ class AnimeList extends Component<Props, State> {
                 }
                 this.page = undefined;
             }).catch(() => {
-                this.endLoading();
+                this.showError();
                 this.page = undefined;
             })
         }
 
     };
-
+    showError=()=>{
+        ToastAndroid.show('error',ToastAndroid.LONG);
+        this.endLoading();
+    }
 }
 
 export default AnimeList;

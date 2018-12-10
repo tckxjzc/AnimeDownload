@@ -44,6 +44,8 @@ class ComicatManager implements AnimeManager<ComicatPagination> {
                 } else {
                     reject(new Error(response.statusText));
                 }
+            }).catch((e) => {
+                reject(e);
             });
         });
     }
@@ -60,6 +62,8 @@ class ComicatManager implements AnimeManager<ComicatPagination> {
                 } else {
                     reject(new Error(response.statusText));
                 }
+            }).catch((e) => {
+                reject(e);
             })
         });
     }
@@ -79,9 +83,10 @@ class ComicatManager implements AnimeManager<ComicatPagination> {
                 } else {
                     reject(new Error(response.statusText));
                 }
+            }).catch((e) => {
+                reject(e);
             });
         });
-        ;
     }
 
 

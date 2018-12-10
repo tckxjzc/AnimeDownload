@@ -37,7 +37,7 @@ class AnimeList extends Component {
                     }
                 }
             }).catch(() => {
-                this.endLoading();
+                this.showError();
             });
         };
         this.load = () => {
@@ -49,7 +49,7 @@ class AnimeList extends Component {
                         this.endLoading();
                     }
                 }).catch(() => {
-                    this.endLoading();
+                    this.showError();
                 });
             }
         };
@@ -86,10 +86,14 @@ class AnimeList extends Component {
                     }
                     this.page = undefined;
                 }).catch(() => {
-                    this.endLoading();
+                    this.showError();
                     this.page = undefined;
                 });
             }
+        };
+        this.showError = () => {
+            ToastAndroid.show('error', ToastAndroid.LONG);
+            this.endLoading();
         };
         this.anime = props.animeManager;
     }
