@@ -11,6 +11,8 @@ interface ComicatParseInterface {
     parseDetails(html: string, callback: (details: Anime) => void);
 
     parseMaxPage(html: string, callback: (page: number) => void);
+
+    request(options:any, callback: (result:any) => void);
 }
 
 

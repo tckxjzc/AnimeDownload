@@ -7,7 +7,7 @@
  */
 
 import React, {Component} from 'react';
-import {StyleSheet, View} from 'react-native';
+import {StyleSheet, View,Text} from 'react-native';
 import Navigation from "./routes/Navigation";
 import SplashScreen from 'react-native-splash-screen';
 type Props = {};
