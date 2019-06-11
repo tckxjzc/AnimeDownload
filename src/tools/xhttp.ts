@@ -4,7 +4,7 @@ import ComicatParse from "../parse/ComicatParse";
 export default (url:string)=>{
 
 
-    return new Promise(function (resolve,reject) {
+    return new Promise<any>(function (resolve,reject) {
         ComicatParse.request({
             url:url,
             method:'get',
@@ -13,6 +13,7 @@ export default (url:string)=>{
             if(ok){
                 resolve({
                     ok:true,
+                    statusText:'',
                     text:function () {
                         return new Promise(function (resolve) {
                             resolve(body);

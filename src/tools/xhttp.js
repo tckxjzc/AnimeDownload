@@ -8,6 +8,7 @@ export default (url) => {
             if (ok) {
                 resolve({
                     ok: true,
+                    statusText: '',
                     text: function () {
                         return new Promise(function (resolve) {
                             resolve(body);
