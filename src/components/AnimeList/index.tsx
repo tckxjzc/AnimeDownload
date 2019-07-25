@@ -38,9 +38,13 @@ class AnimeList extends Component<Props, State> {
     }
 
     render() {
+        let map=new Map();
+        this.state.list.forEach(function (item) {
+           map.set(item.id,item);
+        });
         return <View style={styles.container}>
             <FlatList
-                data={this.state.list}
+                data={[...map.values()]}
                 ref={this.flatList}
                 onEndReached={this.load}
                 onEndReachedThreshold={0.3}

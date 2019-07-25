@@ -98,8 +98,12 @@ class AnimeList extends Component {
         this.anime = props.animeManager;
     }
     render() {
+        let map = new Map();
+        this.state.list.forEach(function (item) {
+            map.set(item.id, item);
+        });
         return <View style={styles.container}>
-            <FlatList data={this.state.list} ref={this.flatList} onEndReached={this.load} onEndReachedThreshold={0.3} refreshControl={<RefreshControl onRefresh={this.first} refreshing={this.state.loading} colors={[THEME.PRIMARY_COLOR]}/>} keyExtractor={this.keyExtractor} renderItem={this.renderItem}/>
+            <FlatList data={[...map.values()]} ref={this.flatList} onEndReached={this.load} onEndReachedThreshold={0.3} refreshControl={<RefreshControl onRefresh={this.first} refreshing={this.state.loading} colors={[THEME.PRIMARY_COLOR]}/>} keyExtractor={this.keyExtractor} renderItem={this.renderItem}/>
             
             
             
