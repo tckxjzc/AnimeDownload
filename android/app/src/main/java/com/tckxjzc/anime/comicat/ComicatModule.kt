@@ -1,5 +1,6 @@
 package com.tckxjzc.anime.comicat
 
+import android.support.annotation.ArrayRes
 import android.util.Log
 import com.tckxjzc.anime.bean.Anime
 import com.facebook.react.bridge.*
@@ -13,6 +14,9 @@ import java.util.regex.Pattern
 
 class ComicatModule(reactContext: ReactApplicationContext) : ReactContextBaseJavaModule(reactContext) {
     var count=0
+    var host = "m.kisssub.org";
+    val hosts = arrayOf("m.kisssub.org","m.comicat.org")
+
     companion object {
 
         val okHttpClient = OkHttpClient()
@@ -43,7 +47,11 @@ class ComicatModule(reactContext: ReactApplicationContext) : ReactContextBaseJav
     override fun getName(): String {
         return "Comicat"
     }
-
+    @ReactMethod
+    fun switchHost(str: String, callback: Callback){
+        host = str
+        callback.invoke();
+    }
     @ReactMethod
     fun parseToList(doc: String, callback: Callback) {
 //        val result = Arguments.createMap()
@@ -165,7 +173,7 @@ class ComicatModule(reactContext: ReactApplicationContext) : ReactContextBaseJav
                 .add("visitor_test", "human")
                 .build()
         val request = Request.Builder()
-                .url("http://m.comicat.org/addon.php?r=document/view&page=visitor-test")
+                .url("http://$host/addon.php?r=document/view&page=visitor-test")
                 .addHeader("User-Agent", "Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1")
                 .post(body)
                 .build()

@@ -3,9 +3,11 @@ export default interface Pagination {
     page: number;
     url: string;
     host: string;
+    hosts: string[];
     protocol: string;
     keyword: string;
 
+    switchHost(): void;
     next(): string;
 
     go(page: number): string;

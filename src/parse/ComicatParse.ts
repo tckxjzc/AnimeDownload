@@ -6,6 +6,7 @@ import Anime from "../interface/bean/Anime";
 
 
 interface ComicatParseInterface {
+    switchHost(host: string, callback: () => void);
     parseToList(html: string, callback: (result: ListResult) => void);
 
     parseDetails(html: string, callback: (details: Anime) => void);

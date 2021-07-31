@@ -30,6 +30,7 @@ class AnimeList extends Component<Props, State> {
         loading: false,
         pageModal: false,
     };
+    repeat = 0;
     anime: AnimeManager<Pagination>;
 
     constructor(props) {
@@ -129,7 +130,8 @@ class AnimeList extends Component<Props, State> {
                 }
             }
         }).catch(() => {
-            this.showError();
+            // this.showError();
+            this.refreshed();
         });
     };
     load = () => {
@@ -187,8 +189,19 @@ class AnimeList extends Component<Props, State> {
         }
 
     };
-    showError=()=>{
-        ToastAndroid.show('error',ToastAndroid.LONG);
+    refreshed = () =>{
+        if(this.repeat>5){ // 最多重试五次
+            this.showError('error 5 times')
+            return
+        }
+        // 切换域名
+        this.anime.pagination.switchHost();
+        // 重新加载
+        this.first();
+        ToastAndroid.show(this.anime.pagination.host+ ' refreshed',ToastAndroid.LONG);
+    };
+    showError=(msg='error')=>{
+        ToastAndroid.show(msg,ToastAndroid.LONG);
         this.endLoading();
     }
 }

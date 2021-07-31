@@ -1,10 +1,19 @@
 import { PaginationType } from "../interface/anime/Pagination";
+import ComicatParse from "../parse/ComicatParse";
 class ComicatPagination {
     constructor() {
         this.page = 1;
-        this.host = 'm.comicat.org';
+        this.host = 'm.kisssub.org';
+        this.hosts = [
+            'm.comicat.org',
+            'm.kisssub.org',
+        ];
         this.protocol = 'http:';
         this.type = PaginationType.DEFAULT;
+    }
+    switchHost() {
+        this.host = this.host === this.hosts[0] ? this.hosts[1] : this.hosts[0];
+        ComicatParse.switchHost(this.host, () => { });
     }
     first() {
         return this.go(1);

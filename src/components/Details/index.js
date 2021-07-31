@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Linking, ProgressBarAndroid, ToastAndroid, View, Clipboard, WebView, } from 'react-native';
-import { actionButtonStyle, styles, toolBarStyle } from "./styles";
+import { actionButtonStyle, styles, toolBarStyle, copyActionButtonStyle } from "./styles";
 import getTemplate from "./getTemplate";
 import injectedJavaScript from "./injectedJavaScript";
 import THEME from "../../values/THEME";
@@ -31,6 +31,11 @@ class Details extends Component {
                     ToastAndroid.show('未安装bt下载工具,已经复制下载链接到剪贴板', ToastAndroid.LONG);
                 }
             });
+        };
+        this.copy = () => {
+            let link = `magnet:?xt=urn:btih:${this.anime.torrent}`;
+            Clipboard.setString(link);
+            ToastAndroid.show('已经复制下载链接到剪贴板', ToastAndroid.LONG);
         };
         this.goBack = () => {
             this.props.navigation.goBack();
@@ -73,7 +78,7 @@ class Details extends Component {
         centerElement={this.anime.title}/>
             {containerView}
             <ActionButton style={actionButtonStyle} onPress={this.download} icon={'arrow-downward'}/>
-            
+            <ActionButton style={copyActionButtonStyle} onPress={this.copy} icon={'insert-drive-file'}/>
         </View>;
     }
 }

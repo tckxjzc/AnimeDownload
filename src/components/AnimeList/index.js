@@ -16,6 +16,7 @@ class AnimeList extends Component {
             loading: false,
             pageModal: false,
         };
+        this.repeat = 0;
         this.flatList = React.createRef();
         /**
          *method
@@ -37,7 +38,8 @@ class AnimeList extends Component {
                     }
                 }
             }).catch(() => {
-                this.showError();
+                // this.showError();
+                this.refreshed();
             });
         };
         this.load = () => {
@@ -91,8 +93,19 @@ class AnimeList extends Component {
                 });
             }
         };
-        this.showError = () => {
-            ToastAndroid.show('error', ToastAndroid.LONG);
+        this.refreshed = () => {
+            if (this.repeat > 5) { // 最多重试五次
+                this.showError('error 5 times');
+                return;
+            }
+            // 切换域名
+            this.anime.pagination.switchHost();
+            // 重新加载
+            this.first();
+            ToastAndroid.show(this.anime.pagination.host + ' refreshed', ToastAndroid.LONG);
+        };
+        this.showError = (msg = 'error') => {
+            ToastAndroid.show(msg, ToastAndroid.LONG);
             this.endLoading();
         };
         this.anime = props.animeManager;
